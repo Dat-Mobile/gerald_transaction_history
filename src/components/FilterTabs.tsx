@@ -1,10 +1,5 @@
 import React, { memo } from 'react';
-import {
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import type { TransactionFilter } from '../types/transaction';
 
@@ -32,7 +27,8 @@ export const FilterTabs = memo(function FilterTabs({
     <View
       accessibilityLabel="Transaction type filter"
       accessibilityRole="tablist"
-      style={styles.container}>
+      style={styles.container}
+    >
       {FILTER_OPTIONS.map(option => {
         const isSelected = selectedFilter === option.value;
 
@@ -47,8 +43,11 @@ export const FilterTabs = memo(function FilterTabs({
               styles.tab,
               isSelected && styles.tabSelected,
               pressed && styles.tabPressed,
-            ]}>
-            <Text style={[styles.tabText, isSelected && styles.tabTextSelected]}>
+            ]}
+          >
+            <Text
+              style={[styles.tabText, isSelected && styles.tabTextSelected]}
+            >
               {option.label}
             </Text>
           </Pressable>
@@ -70,7 +69,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 6,
     flex: 1,
-    minHeight: 40,
+    minHeight: 36,
     justifyContent: 'center',
     paddingHorizontal: 10,
   },

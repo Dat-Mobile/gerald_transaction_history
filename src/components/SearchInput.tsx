@@ -1,11 +1,5 @@
 import React, { memo } from 'react';
-import {
-  Pressable,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from 'react-native';
+import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 
 interface SearchInputProps {
   value: string;
@@ -46,7 +40,8 @@ export const SearchInput = memo(function SearchInput({
           style={({ pressed }) => [
             styles.clearButton,
             pressed && styles.clearButtonPressed,
-          ]}>
+          ]}
+        >
           <Text style={styles.clearButtonText}>Clear</Text>
         </Pressable>
       ) : null}
@@ -84,7 +79,6 @@ const styles = StyleSheet.create({
     color: '#111827',
     flex: 1,
     fontSize: 16,
-    minHeight: 48,
     paddingHorizontal: 10,
   },
   searchGlyph: {

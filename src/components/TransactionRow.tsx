@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import type { TransactionListItem } from '../types/transaction';
 
-export const TRANSACTION_ROW_HEIGHT = 88;
+export const TRANSACTION_ROW_HEIGHT = 78;
 
 interface TransactionRowProps {
   transaction: TransactionListItem;
@@ -23,7 +23,8 @@ export const TransactionRow = memo(function TransactionRow({
     <View
       accessible
       accessibilityLabel={rowAccessibilityLabel}
-      style={styles.container}>
+      style={styles.container}
+    >
       <View style={styles.detailColumn}>
         <Text numberOfLines={1} style={styles.merchant}>
           {transaction.merchant}
@@ -38,7 +39,8 @@ export const TransactionRow = memo(function TransactionRow({
       </View>
       <Text
         numberOfLines={1}
-        style={[styles.amount, isIncome ? styles.income : styles.expense]}>
+        style={[styles.amount, isIncome ? styles.income : styles.expense]}
+      >
         {transaction.formattedAmount}
       </Text>
     </View>
@@ -47,7 +49,7 @@ export const TransactionRow = memo(function TransactionRow({
 
 const styles = StyleSheet.create({
   amount: {
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: '800',
     marginLeft: 14,
     maxWidth: 124,
@@ -56,7 +58,7 @@ const styles = StyleSheet.create({
   category: {
     color: '#6B7280',
     flexShrink: 1,
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: '600',
   },
   container: {
@@ -70,7 +72,7 @@ const styles = StyleSheet.create({
   },
   date: {
     color: '#6B7280',
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: '500',
   },
   detailColumn: {
@@ -85,7 +87,7 @@ const styles = StyleSheet.create({
   },
   merchant: {
     color: '#111827',
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: '800',
     marginBottom: 8,
   },
