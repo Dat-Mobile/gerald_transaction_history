@@ -1,15 +1,9 @@
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   FlatList,
   ListRenderItemInfo,
   Pressable,
   RefreshControl,
-  SafeAreaView,
   StatusBar,
   StyleSheet,
   Text,
@@ -32,11 +26,9 @@ import type {
   TransactionListItem,
 } from '../types/transaction';
 import { useDebouncedValue } from '../utils/debounce';
-import {
-  formatCurrency,
-  formatTransactionDate,
-} from '../utils/formatters';
+import { formatCurrency, formatTransactionDate } from '../utils/formatters';
 import { filterTransactions } from '../utils/transactions';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const SEARCH_DEBOUNCE_MS = 300;
 const SKELETON_ROW_KEYS = [
@@ -109,11 +101,7 @@ export function TransactionHistoryScreen() {
 
   const filteredTransactions = useMemo(
     () =>
-      filterTransactions(
-        transactions,
-        selectedFilter,
-        debouncedSearchQuery,
-      ),
+      filterTransactions(transactions, selectedFilter, debouncedSearchQuery),
     [debouncedSearchQuery, selectedFilter, transactions],
   );
 
@@ -148,7 +136,8 @@ export function TransactionHistoryScreen() {
   }, [loadTransactions]);
 
   const isInitialLoading = isLoading && transactions.length === 0;
-  const shouldShowFullError = errorMessage !== null && transactions.length === 0;
+  const shouldShowFullError =
+    errorMessage !== null && transactions.length === 0;
 
   if (shouldShowFullError) {
     return (
@@ -166,11 +155,6 @@ export function TransactionHistoryScreen() {
         <View style={styles.header}>
           <Text style={styles.eyebrow}>Gerald</Text>
           <Text style={styles.title}>Transaction History</Text>
-          <Text
-            accessibilityLabel={`${listData.length} transactions shown`}
-            style={styles.subtitle}>
-            {listData.length} shown
-          </Text>
         </View>
 
         <View style={styles.controls}>
@@ -183,13 +167,20 @@ export function TransactionHistoryScreen() {
             onChange={handleFilterChange}
             selectedFilter={selectedFilter}
           />
+          <Text
+            accessibilityLabel={`${listData.length} transactions shown`}
+            style={styles.subtitle}
+          >
+            {listData.length} shown
+          </Text>
         </View>
 
         {errorMessage !== null ? (
           <View
             accessibilityLabel={`Transaction refresh error. ${errorMessage}`}
             accessibilityRole="alert"
-            style={styles.inlineErrorContainer}>
+            style={styles.inlineErrorContainer}
+          >
             <Text style={styles.inlineErrorText}>{errorMessage}</Text>
             <Pressable
               accessibilityLabel="Retry refreshing transactions"
@@ -198,7 +189,8 @@ export function TransactionHistoryScreen() {
               style={({ pressed }) => [
                 styles.inlineRetryButton,
                 pressed && styles.inlineRetryButtonPressed,
-              ]}>
+              ]}
+            >
               <Text style={styles.inlineRetryButtonText}>Retry</Text>
             </Pressable>
           </View>
@@ -208,7 +200,8 @@ export function TransactionHistoryScreen() {
           <View
             accessibilityLabel="Loading transactions"
             accessibilityRole="progressbar"
-            style={styles.skeletonContainer}>
+            style={styles.skeletonContainer}
+          >
             {SKELETON_ROW_KEYS.map(key => (
               <SkeletonTransactionRow key={key} />
             ))}
@@ -240,6 +233,7 @@ export function TransactionHistoryScreen() {
             renderItem={renderTransactionRow}
             style={styles.list}
             windowSize={7}
+            keyboardDismissMode="on-drag"
           />
         )}
       </View>
@@ -254,7 +248,7 @@ const styles = StyleSheet.create({
   },
   controls: {
     gap: 14,
-    paddingBottom: 18,
+    paddingBottom: 10,
     paddingHorizontal: 20,
   },
   emptyListContent: {
@@ -322,13 +316,12 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     color: '#6B7280',
-    fontSize: 15,
+    fontSize: 12,
     fontWeight: '600',
-    marginTop: 8,
   },
   title: {
     color: '#111827',
-    fontSize: 32,
+    fontSize: 26,
     fontWeight: '900',
     letterSpacing: 0,
   },
