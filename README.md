@@ -75,7 +75,6 @@ Download APK file at: https://drive.google.com/file/d/1jFLxq4RUo47UYFZtUXMXbr0Vo
 ### 4. README / Submission Coverage
 
 - This README documents the technical stack, implemented assignment requirements, setup instructions, screenshots, tests, project structure, trade-offs, and future improvements.
-- APK download link is intentionally left as a placeholder until the final build URL is available.
 - Screenshots are included from root-level `screenshot_1.png`, `screenshot_2.png`, and `screenshot_3.png`.
 
 ## Architecture notes
