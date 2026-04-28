@@ -39,7 +39,7 @@ Download APK file at: https://drive.google.com/file/d/1jFLxq4RUo47UYFZtUXMXbr0Vo
 
 <img src="screenshot_2.png" height="550">
 
-### Empty search state
+### All expenses filter
 
 <img src="screenshot_3.png" height="550">
 
